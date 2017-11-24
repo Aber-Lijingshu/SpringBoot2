@@ -21,10 +21,10 @@
 		<swagger2.version>2.7.0</swagger2.version>
 		<beetlsql.version>2.8.23</beetlsql.version>
 		<mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
-		<hutool.version>3.0.7</hutool.version>
 		<druid.version>1.0.28</druid.version>
 		<!-- redis版本 -->
 		<redis.version>2.1.0</redis.version>
+		<shiro.version>1.2.3</shiro.version>
 	</properties>
 
 	<dependencies>
@@ -56,11 +56,11 @@
 		</dependency>
 
 		<!-- springboot项目部署到tomcat下需要用的包 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
-		</dependency>
+		</dependency> -->
 		<!-- 分布式Session -->
 		<dependency>
 			<groupId>org.springframework.session</groupId>
@@ -94,6 +94,19 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>${mybatis.spring.boot.version}</version>
 		</dependency>
+
+		<!--jsp页面测试添加依赖 -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<!-- gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -105,7 +118,7 @@
 			<artifactId>spring-boot-starter-redis</artifactId>
 			<version>1.2.8.RELEASE</version>
 		</dependency>
-
+		<!--druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
@@ -115,6 +128,47 @@
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
+		</dependency>
+
+		<!-- thmleaf模板依赖. -->
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency> -->
+		
+		
+		<!-- shiro -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-web</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+
+		<!--Shiro + EHCache 缓存 -->
+		<dependency>
+			<artifactId>ehcache-core</artifactId>
+			<groupId>net.sf.ehcache</groupId>
+			<version>2.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
 		</dependency>
 
 	</dependencies>

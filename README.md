@@ -19,3 +19,5 @@
 
 8:分布式Session状态保存Redis
 在使用spring boot做负载均衡的时候，多个app之间的session要保持一致，这样负载到不同的app时候，在一个app登录之后，而访问到另外一台服务器的时候，session丢失
+
+9:集成shiro实现用户权限管理
