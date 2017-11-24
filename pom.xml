@@ -54,6 +54,7 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 			<optional>true</optional>
 		</dependency>
+		
 		<!-- springboot项目部署到tomcat下需要用的包 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

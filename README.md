@@ -7,10 +7,12 @@
 3：实现定时器功能
 
 4：使用Druid和监控配置
-访问地址;http://127.0.0.1:8082/boot/druid2/index.html,http://127.0.0.1:8082/boot/druid/index.html
+访问地址http://127.0.0.1:8082/boot/druid2/index.html,http://127.0.0.1:8082/boot/druid/index.html
 
 
 5：集成Swagger
 访问地址：http://127.0.0.1:8082/boot/swagger-ui.html
 
-6:集成redis集群
+6:集成redis集群,集成redis,不能同时使用
+
+7:整合mybaits

@@ -20,6 +20,9 @@ public class HelloController {
 //	private RedisCluster redisCluster;
 	
 	@Autowired
+	private RedistConfig redisConfig;
+	
+	@Autowired
 	private Redis redis;
 	@Autowired
 	private TestMapper mapper;
@@ -45,8 +48,7 @@ public class HelloController {
 
 	@RequestMapping("/config")
 	public RedistConfig config() {
-		RedistConfig redistConfig = new RedistConfig();
-		return redistConfig;
+		return redisConfig;
 	}
 	
 //	@RequestMapping("/redis")
@@ -57,6 +59,7 @@ public class HelloController {
 	
 	@RequestMapping("/redis2")
 	public String redis2() {
+		System.out.println("redis======="+redis);
 		redis.setString("b", "bbb");
 		return redis.getString("b");
 	}

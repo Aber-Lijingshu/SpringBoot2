@@ -7,7 +7,7 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 		<!-- 打印查询语句 -->
         <setting name="logImpl" value="STDOUT_LOGGING" />
-        <!-- 返回字段为空时js也显示该字段 -->
+        <!-- 返回字段为空时null也显示该字段 -->
         <setting name="callSettersOnNulls" value="true"/>  
 	</settings>
     
@@ -16,10 +16,15 @@
 		<!-- 批量别名定义,指定包名，mybatis自动扫描包中的po类，自动定义别名，别名是类名(首字母大写或小写都可以,一般用小写) -->
 		<!-- <package name="com.hotpot..pojo" /> -->
 		<!--<typeAlias type="com.hotpot.sys.pojo.SysUser" alias="sysUser"/> -->
+		
+		<!-- 批量别名定义 
+                       指定包名，mybatis自动扫描包中的po类，自动定义别名，别名就是类名（首字母大写或小写都可以）
+        -->
+        <package name="com.demo.pojo"/>
 	</typeAliases>
 	
 	<plugins>
 		<!-- 打印sql拦截器 -->
-		<plugin interceptor="com.ganinfo.utils.MybatisInterceptor"></plugin>
+		<plugin interceptor="com.demo.utils.MybatisInterceptor"></plugin>
 	</plugins>
 </configuration>

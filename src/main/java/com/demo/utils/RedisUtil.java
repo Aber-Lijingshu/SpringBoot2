@@ -1,8 +1,5 @@
 package com.demo.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -16,30 +13,12 @@ import redis.clients.jedis.JedisPoolConfig;
  * @version V1.0
  */
 public class RedisUtil {
-	
-	@Autowired  
-    private Environment env; 
-	
-	@Value("${redis.ip}")
-	private String ip;
-	@Value("${redis.port}")
-	private int port;
-	@Value("${redis.password}")
-	private String password;
-	@Value("${redis.maxWait}")
-	private long maxWait;
-	@Value("${redis.maxTotal}")
-	private int maxTotal;
-	@Value("${redis.maxIdle}")
-	private int maxIdle;
-	
+	private static PropertiesRead propertiesRead=new PropertiesRead();
+
 	/**
 	 * 非切片链接池
-	 * 
 	 */
 	private JedisPool jedisPool;
-
-//	private String ip = "127.0.0.1";
 
 	/**
 	 * 非切片连接池初始化
@@ -47,14 +26,12 @@ public class RedisUtil {
 	private JedisPool initialPool() {
 		// 池基本配置
 		JedisPoolConfig config = new JedisPoolConfig();
-		config.setMaxTotal(maxTotal);
-		config.setMaxIdle(maxIdle);
-		config.setMaxWaitMillis(maxWait);
-		config.setTestOnBorrow(true);
-		
-		jedisPool = new JedisPool(config, ip, port);
-		System.out.println(env.getProperty("redis.ip"));
-		System.out.println("ip"+ip);
+		config.setMaxTotal(propertiesRead.getMaxTotal());
+		config.setMaxIdle(propertiesRead.getMaxIdle());
+		config.setMaxWaitMillis(propertiesRead.getMaxActive());
+		config.setTestOnBorrow(propertiesRead.getTestOnBorrow());
+		config.setTestOnReturn(propertiesRead.getTestOnReturn());
+		jedisPool = new JedisPool(config, propertiesRead.getIp(), propertiesRead.getPort());
 		return jedisPool;
 
 	}
@@ -105,9 +82,12 @@ public class RedisUtil {
 			}
 
 		}
-
 		return jedis;
 
 	}
+	
+	
+	
+	
 
 }

@@ -75,6 +75,7 @@ public class RedisImpl implements Redis {
 		Jedis jedis = redisUtil.getJedis();
 		String bKey = buildKey(key);
 		String set = null;
+		System.out.println("jedis=============="+jedis);
 		set = jedis.set(bKey.getBytes(), SerializeUtil.serialize(param));
 		if (!set.isEmpty() && (RETURN_OK).equals(set)) {
 			return true;
