@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>SpringBoot</groupId>
 	<artifactId>hello</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hello Maven Webapp</name>
 	<url>http://maven.apache.org</url>
@@ -54,12 +54,17 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 			<optional>true</optional>
 		</dependency>
-		
+
 		<!-- springboot项目部署到tomcat下需要用的包 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		<!-- 分布式Session -->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-data-redis</artifactId>
 		</dependency>
 		<!-- swagger2文档 -->
 		<dependency>
@@ -98,7 +103,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-redis</artifactId>
-			<version>1.4.1.RELEASE</version>
+			<version>1.2.8.RELEASE</version>
 		</dependency>
 
 		<dependency>
