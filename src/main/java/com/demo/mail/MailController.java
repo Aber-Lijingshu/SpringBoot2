@@ -12,9 +12,9 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import com.demo.pojo.ApiResult;
@@ -22,7 +22,8 @@ import com.demo.pojo.ApiResult;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
-@Controller
+
+@RestController
 @RequestMapping(value = "/mail")
 public class MailController {
 
@@ -54,7 +55,7 @@ public class MailController {
 	 * @throws MessagingException
 	 */
 	@RequestMapping(value = "/send2")
-	public void sendAttachmentsEmail() throws MessagingException {
+	public ApiResult sendAttachmentsEmail() throws MessagingException {
 		// 这个是javax.mail.internet.MimeMessage下的，不要搞错了。
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
@@ -75,6 +76,9 @@ public class MailController {
 		helper.addAttachment("头像2.jpg", file2);
 
 		mailSender.send(mimeMessage);
+		ApiResult apiResult = new ApiResult();
+		apiResult.setSuccess();
+		return apiResult;
 	}
 
 	/**
@@ -83,7 +87,7 @@ public class MailController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/send3")
-	public void sendInlineMail() throws Exception {
+	public ApiResult sendInlineMail() throws Exception {
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
@@ -99,7 +103,9 @@ public class MailController {
 		helper.addInline("head", file);
 
 		mailSender.send(mimeMessage);
-
+		ApiResult apiResult = new ApiResult();
+		apiResult.setSuccess();
+		return apiResult;
 	}
 
 	/**
@@ -108,7 +114,7 @@ public class MailController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/send4")
-	public void sendTemplateMail() throws Exception {
+	public ApiResult sendTemplateMail() throws Exception {
 
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 
@@ -130,6 +136,9 @@ public class MailController {
 		helper.setText(html, true);
 
 		mailSender.send(mimeMessage);
+		ApiResult apiResult = new ApiResult();
+		apiResult.setSuccess();
+		return apiResult;
 	}
 
 }

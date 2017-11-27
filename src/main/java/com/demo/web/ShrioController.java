@@ -33,13 +33,13 @@ import com.demo.shiro.service.UserService;
 public class ShrioController {
 	private static final Logger logger = LoggerFactory.getLogger(ShrioController.class);
 
-//    @Autowired
-//    private UserService userService;
-//
+    @Autowired
+    private UserService userService;
+
 //    @RequestMapping(value="/login",method=RequestMethod.GET)
 //    public String loginForm(Model model){
 //        model.addAttribute("user", new User());
-//        return "login";
+//        return "login.jsp";
 //    }
 //
 //    @RequestMapping(value="/login",method=RequestMethod.POST)
@@ -106,25 +106,25 @@ public class ShrioController {
 //        //使用权限管理工具进行用户的退出，跳出登录，给出提示信息
 //        SecurityUtils.getSubject().logout();  
 //        redirectAttributes.addFlashAttribute("message", "您已安全退出");  
-//        return "redirect:/login";
+//        return "redirect:/login.jsp";
 //    } 
 //
 //    @RequestMapping(value="/403",method=RequestMethod.GET)
 //    public String unauthorizedRole(){
 //        logger.info("------没有权限-------");
-//        return "403";
+//        return "403.jsp";
 //    }
 //
 //    @RequestMapping(value="/user",method=RequestMethod.GET)
 //    public String getUserList(Map<String, Object> model){
 ////        model.put("userList", userDao.getList());
-//        return "user";
+//        return "user.jsp";
 //    }
 //
 //    @RequestMapping(value="/user/edit/{userid}",method=RequestMethod.GET)
 //    public String getUserList(@PathVariable int userid){
 //        logger.info("------进入用户信息修改-------");
-//        return "user_edit";
+//        return "user_edit.jsp";
 //    }
 
 }
