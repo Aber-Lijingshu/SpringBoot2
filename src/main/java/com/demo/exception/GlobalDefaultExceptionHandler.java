@@ -39,13 +39,13 @@ public class GlobalDefaultExceptionHandler {
 	 * @param ex
 	 * @return
 	 */
-//	@ExceptionHandler
-//	public ModelAndView exceptionHandelByThymeleaf(Exception ex, HttpServletRequest req) {
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("error");
-//		mav.addObject("exception", ex);
-//		mav.addObject("url", req.getRequestURL());
-//		return mav;
-//	}
+	@ExceptionHandler
+	public ModelAndView exceptionHandelByThymeleaf(Exception ex, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("error");
+		mav.addObject("exception", ex);
+		mav.addObject("url", req.getRequestURL());
+		return mav;
+	}
 
 }

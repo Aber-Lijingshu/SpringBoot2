@@ -1,6 +1,8 @@
 package com.demo.mail;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -11,9 +13,14 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import com.demo.pojo.ApiResult;
+
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 
 @Controller
 @RequestMapping(value = "/mail")
@@ -21,6 +28,9 @@ public class MailController {
 
 	@Autowired
 	private JavaMailSender mailSender;
+
+	@Autowired
+	private FreeMarkerConfigurer cfg;
 
 	@RequestMapping(value = "/send")
 	public ApiResult sendSimpleEmail() {
@@ -90,6 +100,36 @@ public class MailController {
 
 		mailSender.send(mimeMessage);
 
+	}
+
+	/**
+	 * 模板邮件；
+	 * 
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/send4")
+	public void sendTemplateMail() throws Exception {
+
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
+
+		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+		// 基本设置.
+		helper.setFrom("1225470167@qq.com");// 发送者.
+		helper.setTo("1225470167@qq.com");// 接收者.
+		helper.setSubject("模板邮件（邮件主题）");// 邮件主题.
+
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("username", "林峰");
+
+		Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
+		// 设定去哪里读取相应的ftl模板
+		cfg.setClassForTemplateLoading(this.getClass(), "/templates");
+		// 在模板文件目录中寻找名称为name的模板文件
+		Template template = cfg.getTemplate("email.ftl");
+		String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
+		helper.setText(html, true);
+
+		mailSender.send(mimeMessage);
 	}
 
 }
