@@ -21,17 +21,21 @@ import com.demo.pojo.ResultMessage;
 public class GlobalDefaultExceptionHandler {
 
 	/**
-	 * @Title: defaultErrorHandler @Description: 统一处理某一类异常，从而能够减少代码重复率和复杂度 @param
-	 * req @param e @return ApiResult @throws
+	 * @Title: defaultErrorHandler 
+	 * @Description: 统一处理某一类异常，从而能够减少代码重复率和复杂度
+	 * @param req 
+	 * @param e 
+	 * @return ApiResult 
+	 * @throws
 	 */
 	@ExceptionHandler(value = ExceptionResult.class)
 	@ResponseBody
-	public ExceptionResult defaultErrorHandler(HttpServletRequest req, Exception e) {
+	public ExceptionResult defaultErrorHandler(HttpServletRequest req, Exception ex) {
 		// 打印异常信息：
-		e.printStackTrace();
-		return new ExceptionResult(ResultCode.SERVER_ERROR.getCode(), ResultMessage.SERVER_ERRPR.getMessage());
+		ex.printStackTrace();
+		return new ExceptionResult(ResultCode.SERVER_ERROR.getCode(),ResultMessage.SERVER_ERRPR.getMessage() );
 
-	}
+	} 
 
 	/**
 	 * 捕获类内所有的异常
@@ -39,13 +43,13 @@ public class GlobalDefaultExceptionHandler {
 	 * @param ex
 	 * @return
 	 */
-	@ExceptionHandler
-	public ModelAndView exceptionHandelByThymeleaf(Exception ex, HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("error");
-		mav.addObject("exception", ex);
-		mav.addObject("url", req.getRequestURL());
-		return mav;
-	}
+//	@ExceptionHandler(value = Exception.class)
+//	public ModelAndView exceptionHandelByThymeleaf(Exception ex, HttpServletRequest req) {
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("error");
+//		mav.addObject("exception", ex.getMessage());
+//		mav.addObject("url", req.getRequestURL());
+//		return mav;
+//	}
 
 }

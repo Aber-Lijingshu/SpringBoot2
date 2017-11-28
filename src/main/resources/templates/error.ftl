@@ -8,8 +8,9 @@
 
 <body>
 <h1>Error Handler</h1>
-<div th:text=${url}></div>
-<div th:text=${exception}></div>
+<h3><#if url??>${url}</#if></h3>
+<div><#if exception??>${exception}</#if></div>
+<div></div>
 </body>
 
 </html>
